@@ -51,6 +51,17 @@
                 {% endfor %}
             </div>
             <!-- Course detail template changes go here -->
+            {% if user.is_authenticated %}
+            Start Exam
+
+            {% for question in course.question_set.all %}
+            {{ question.content }}
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+            {{ choice.content }}
+            {% endfor %}
+            {% endfor %} 
+            {% endif %}
     </div>
 </body>
 </html>
